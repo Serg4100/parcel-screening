@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Parcel Screen</title>
+  <link rel="stylesheet" href="sidepanel.css" />
+</head>
+<body>
+  <header class="masthead">
+    <div class="mark">◧</div>
+    <div>
+      <h1>Parcel Screen</h1>
+      <p class="tagline">Preliminary site triage</p>
+    </div>
+  </header>
+
+  <form id="screen-form" class="query">
+    <label class="field">
+      <span class="micro">Jurisdiction</span>
+      <select id="jurisdiction">
+        <option value="san-jose">San Jose, CA</option>
+      </select>
+    </label>
+
+    <div class="seg" role="tablist" aria-label="Lookup mode">
+      <button type="button" class="seg-btn is-active" data-mode="address" role="tab">Address</button>
+      <button type="button" class="seg-btn" data-mode="apn" role="tab">APN</button>
+    </div>
+
+    <label class="field">
+      <span class="micro" id="input-label">Street address</span>
+      <input id="query-input" type="text" autocomplete="off"
+             placeholder="Enter a San Jose address…" />
+    </label>
+
+    <button type="button" id="run" class="run">Screen parcel</button>
+  </form>
+
+  <div id="status" class="status" hidden></div>
+
+  <section id="result" class="result" hidden>
+    <div class="verdict" id="verdict">
+      <span class="dot" id="verdict-dot"></span>
+      <span class="verdict-label" id="verdict-label">—</span>
+      <span class="verdict-src micro" id="verdict-src"></span>
+    </div>
+<p id="disclaimer" class="disclaimer">
+        Preliminary screening only, generated from public GIS data that may be
+        approximate or out of date. This is not a survey, title report,
+        geotechnical or environmental assessment, or a planning-department
+        determination, and it is not professional, engineering, or legal advice.
+        Confirm every value with the City of San José and a licensed professional
+        before relying on it.
+      </p>
+    <ul id="flags" class="flags" hidden></ul>
+
+    <div id="resolve-note" class="resolve-note" hidden></div>
+
+    <div id="candidates" class="candidates" hidden>
+      <p class="micro">Which parcel did you mean?</p>
+      <ul id="candidate-list" class="candidate-list"></ul>
+    </div>
+
+    <dl class="readout">
+      <div class="row"><dt class="micro">APN</dt><dd id="r-apn" class="mono">—</dd></div>
+      <div class="row"><dt class="micro">Lot area</dt><dd id="r-area" class="mono">—</dd></div>
+      <div class="row"><dt class="micro">Zoning</dt><dd id="r-zoning">—</dd></div>
+      <div class="row"><dt class="micro">Min lot area</dt><dd id="r-minlot" class="mono">—</dd></div>
+      <div class="row"><dt class="micro">Setbacks F/S/R</dt><dd id="r-setbacks" class="mono">—</dd></div>
+      <div class="row"><dt class="micro">Max floor area (est)</dt><dd id="r-buildable" class="mono">—</dd></div>
+      <div class="row"><dt class="micro">Flood zone</dt><dd id="r-flood" class="mono">—</dd></div>
+      <div class="row"><dt class="micro">SFHA</dt><dd id="r-sfha" class="mono">—</dd></div>
+      <div class="row"><dt class="micro">Base flood elev</dt><dd id="r-bfe" class="mono">—</dd></div>
+      <div class="row"><dt class="micro">Seismic hazard</dt><dd id="r-fault" class="mono">—</dd></div>
+      <div class="row"><dt class="micro">Geologic hazard</dt><dd id="r-geologic" class="mono">—</dd></div>
+      <div class="row"><dt class="micro">Slope</dt><dd id="r-slope" class="mono">—</dd></div>
+      <div class="row"><dt class="micro">Soil type</dt><dd id="r-soil">—</dd></div>
+      <div class="row"><dt class="micro">Water provider</dt><dd id="r-water">—</dd></div>
+      <div class="row"><dt class="micro">Vacant land inventory</dt><dd id="r-vacant">—</dd></div>
+      <div class="row" id="row-airport" hidden><dt class="micro">Airport height</dt><dd id="r-airport" class="mono">—</dd></div>
+      <div class="row"><dt class="micro">Location</dt><dd id="r-loc" class="mono">—</dd></div>
+    </dl>
+
+    <details id="standardsbox" class="errbox" hidden>
+      <summary class="micro">Zoning standards detail</summary>
+      <div id="standards-detail"></div>
+    </details>
+
+    <details id="errbox" class="errbox" hidden>
+      <summary class="micro">Service notes</summary>
+      <ul id="errors" class="errors"></ul>
+    </details>
+  </section>
+
+  <section class="recent" id="recent-wrap" hidden>
+    <h2 class="micro">Recent</h2>
+    <ul id="recent" class="recent-list"></ul>
+  </section>
+
+  <footer class="foot micro">
+    Screening data is provided "as is" for triage only — not a substitute for
+    title, survey, or a planning-department determination.
+  </footer>
+
+  <script src="sidepanel.js" type="module"></script>
+</body>
+</html>
